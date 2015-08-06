@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="description" content="home"/>
+	    <meta name="keywords" content="home"/>
+	    <meta name="robots" content="whj"/>
+	    <title>email提示插件</title>
+	    <link rel="stylesheet" href="http://whj.fayfox.com/css/base.css">
+	</head>
+	<body>
+		<style>
+		p { margin-bottom:10px; }
+		/* emailVer */
+		.m_emailVer { position:relative; }
+		.inp_normal { width:100%; line-height:20px; padding:5px; border:1px solid #ccc; box-shadow:0 0 1px 0 #ccc; }
+		.m_emailVer_list { position:absolute; background:#fff; width:100%; }
+		.m_emailVer_list ul { border:1px solid #ccc; }
+		.m_emailVer_list li { cursor:pointer; list-style:none; padding:5px; }
+		.m_emailVer_list li:hover { background:#ccc; }
+		.bc_red { border-color:red; }
+
+		</style>
+		<div style="width:500px; margin:100px auto;font-size:13px; ">
+			<div style="margin-bottom:20px;">
+				<p> 
+					<label for="inp_email">email:</label>
+					<span data-tips="inp_email"></span>
+				</p>
+				<input type="text" id="inp_email" class="inp_normal"/>
+			</div>
+			<div>
+				<h4>目前支持：</h4>
+				<p>1.支持正则验证email;<br/>
+					2.支持正确错误提示;<br/>
+					3.支持使用回调方法</p>
+				<h4>待优化：</h4>
+				<p>1.使用鼠标上下键可以直接在下拉框中滑动</p>
+			</div>
+		</div>
+		
+
+		<script type="text/javascript" src="http://whj.fayfox.com/js/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="js/jquery.emailVer.min.js"></script>
+		<script type="text/javascript">
+			$('#inp_email').emailVer();
+		</script>
+	</body>
+</html>
