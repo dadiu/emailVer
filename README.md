@@ -36,7 +36,7 @@ $('#elemant').emailVer({
 	list : ["qq.com","gmail.com","126.com","163.com","hotmail.com","yahoo.com","yahoo.com.cn","live.com","sohu.com","sina.com"],
 	reg : /^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,6}){1,2})$/,
 	errorTextGoal : $("span[data-tips=\"inp_email\"]"),
-	errorText:"你输入的邮箱地址有误，请修改",
+	errorText:["你输入的邮箱地址有误，请修改","&radic;"],
 	callback : null	
 });
 </pre>
