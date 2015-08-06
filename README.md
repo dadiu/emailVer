@@ -22,13 +22,13 @@ callback : null	//回调函数
 <h3>使用方法</h3>
 <strong>1. html</strong>
 <pre>
-&lt; div style="margin-bottom:20px;">
-	&lt; p> 
-		&lt; label for="inp_email">email:</label>
-		&lt; span data-tips="inp_email"></span>
-	&lt; /p>
-	&lt; input type="text" id="inp_email" class="inp_normal"/>
-&lt; /div>
+&lt;div style="margin-bottom:20px;">
+	&lt;p> 
+		&lt;label for="inp_email">email:</label>
+		&lt;span data-tips="inp_email"></span>
+	&lt;/p>
+	&lt;input type="text" id="inp_email" class="inp_normal"/>
+&lt;/div>
 </pre>
 <strong>2. js</strong>
 <pre>
