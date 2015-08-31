@@ -1,23 +1,20 @@
-/******
-维护：吴海晶(451404370@qq.com)
-
-使用方法
-$('#elemant').emailVer({
-	list : ["qq.com","gmail.com","126.com","163.com","hotmail.com","yahoo.com","yahoo.com.cn","live.com","sohu.com","sina.com"],
-	reg : /^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,6}){1,2})$/,
-	errorTextGoal : $("span[data-tips=\"inp_email\"]"),
-	errorText:"你输入的邮箱地址有误，请修改",
-	callback : null	
-});
-
-参数说明：以下参数均为可选
-list : 	//可传入需要提示的后缀邮箱地址，数组形式
-reg : 	//验证邮箱的正则
-errorTextGoal : //显示错误提示的地址
-errorText: 		//显示提示 数组形式["错误提示的文字","正确提示的文字"]
-callback : null	//回调函数
-******/
-
+/**
+ * @url     https://github.com/dadiu/emailVer
+ * @data    2015.08.06
+ * @author  wuhaijing
+ * @mail    1004609378@qq.com
+ * @version V1.0.0
+ */
+/********************* 传参说明 *********************/
+/**
+ * 以下均为可选参数
+ * list : arr				//可传入需要提示的后缀邮箱地址，数组形式
+ * reg : regExp				//验证邮箱的正则
+ * errorTextGoal : string	//显示错误提示的位置
+ * errorText ： arr			//显示提示 数组形式["错误提示的文字","正确提示的文字"]
+ * call ：function			//回调方法			默认null
+ */
+/******************** 开始 ********************/
 (function($){
 
 	$.fn.emailVer = function(options){
