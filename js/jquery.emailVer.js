@@ -1,6 +1,6 @@
 /**
  * @url     https://github.com/dadiu/emailVer
- * @data    2015.08.06
+ * @data    2015.12.15
  * @author  wuhaijing
  * @mail    1004609378@qq.com
  * @version V1.0.0
@@ -55,17 +55,21 @@
 					var _t = this;
 
 					dfunc.V();
+					document.onkeydown=_t.isKey;
 
 					//输入框的状态
-					domName.keyup(function(){
-
+					domName.keyup(function(event){
 						var thisV = $(this).val();
-
-						_t.showList(thisV);
-
+						if(thisV.indexOf("@")>-1){
+							_t.showList(event, thisV);
+							return false;
+						};
+						objs.list.hide();
+						
 					}).blur(function(){
 						var thisV = $(this).val();
 						//console.log(objs.list.is(":visible"));
+
 						if(objs.list.is(":visible")){
 							return false;
 						};
@@ -82,8 +86,7 @@
 							return false;
 						};
 
-
-					}).focus(function(){						
+					}).focus(function(event){						
 
 						if(options.errorTextGoal){
 							domName.removeClass("bc_red");
@@ -91,7 +94,7 @@
 						};
 
 						var thisV = $(this).val();
-						_t.showList(thisV);
+						_t.showList(event, thisV);
 
 					}).click(function(){
 						return false;
@@ -112,7 +115,62 @@
 					if(options.callback){
 						options.callback();
 					};
+				},
 
+				//键盘事件
+				isKey : function(event){
+					var listLen = objs.list.find("li").length,
+						FIRST = objs.list.find("li:eq(0)"),
+						END = objs.list.find("li:eq("+(listLen-1)+")"),
+						ACTIVE = objs.list.find(".fn_emailActive");
+					
+						//console.log(listLen);
+						//console.log(END.html());
+						//console.log(ACTIVE.html());
+					if(listLen>0){//判断是否存在
+						if (event.keyCode==38){//上
+							isKeyUp();
+						};
+
+						if (event.keyCode==40){//下
+							isKeyDown();
+						};
+
+						if(event.keyCode==13){
+							isKeyEnter();
+						}
+					};
+
+					function isKeyUp(){
+
+						if(ACTIVE.html().indexOf(FIRST.html()) > -1){
+							ACTIVE = END;
+						} else{
+							ACTIVE = ACTIVE.prev();
+						};
+						ACTIVE.addClass("fn_emailActive").siblings().removeClass("fn_emailActive");
+						//console.log("up");
+						return false;
+					};
+
+					function isKeyDown(){
+						if(ACTIVE.html().indexOf(END.html()) > -1){
+							ACTIVE = FIRST;
+						} else{
+							ACTIVE = ACTIVE.next();
+						};
+						ACTIVE.addClass("fn_emailActive").siblings().removeClass("fn_emailActive");
+						return false;
+					};
+
+					function isKeyEnter(isKeyEnter){
+						//如果有提示在
+						if(listLen>0){
+							domName.val(ACTIVE.html());
+							objs.list.hide();
+							return false;
+						}
+					};
 				},
 
 				//遍历email地址
@@ -131,33 +189,35 @@
 						}
 
 					} else {
-
 						for(; i < len; i++){
 							dataVal = thisV + "@" + options.list[i];
 							DOM += "<li data-val=\"" + dataVal + "\">" + dataVal + "</li>";
 						};
 						
 					}
-
 					return DOM;
 				},
 
 				//显示邮箱后缀列表
 				//thisV = 内容长度
-				showList:function(thisV){
+				showList:function(event, thisV){
 					var _t = this;
 
 					if(thisV.length > 0){
+						
+						if(event.keyCode==38 || event.keyCode==40 || event.keyCode==13){
+							return false;
+						};
+
 						var DOM = _t.listDOM(thisV);
 						if(DOM.length > 0){
 							objs.list.html("<ul>" + DOM + "</ul>").slideDown("fast");
-
-						} else{
-							objs.list.hide();
-						}
-					} else{
-						objs.list.hide();
+							objs.list.find("li:eq(0)").addClass("fn_emailActive").siblings().removeClass("fn_emailActive");
+						};
+						return false;
 					};
+					objs.list.hide();
+					
 				}
 
 
