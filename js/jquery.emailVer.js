@@ -1,9 +1,9 @@
 /**
  * @url     https://github.com/dadiu/emailVer
- * @data    2015.12.15
+ * @data    2015.12.17
  * @author  wuhaijing
  * @mail    1004609378@qq.com
- * @version V1.0.0
+ * @version V1.0.2
  */
 /********************* 传参说明 *********************/
 /**
@@ -178,23 +178,16 @@
 
 					var i = 0, len = options.list.length, dataVal = "", DOM = "";
 
-					if(thisV.indexOf("@") > 0){
+					var dataValArr = thisV.split("@");
 
-						var dataValArr = thisV.split("@");
-						for(; i < len; i++){
-							if(options.list[i].indexOf(dataValArr[1]) == 0){
-								dataVal = dataValArr[0] + "@" + options.list[i];
-								DOM += "<li data-val=\"" + dataVal + "\">" + dataVal + "</li>";
-							}
-						}
-
-					} else {
-						for(; i < len; i++){
-							dataVal = thisV + "@" + options.list[i];
+					for(; i < len; i++){
+						if(options.list[i].indexOf(dataValArr[1]) > -1){
+							//console.log(options.list[i]);
+							dataVal = dataValArr[0] + "@" + options.list[i];
 							DOM += "<li data-val=\"" + dataVal + "\">" + dataVal + "</li>";
 						};
-						
 					}
+
 					return DOM;
 				},
 
@@ -203,7 +196,7 @@
 				showList:function(event, thisV){
 					var _t = this;
 
-					if(thisV.length > 0){
+					if(thisV.length > 0 && thisV.indexOf("@") > -1){
 						
 						if(event.keyCode==38 || event.keyCode==40 || event.keyCode==13){
 							return false;
@@ -213,8 +206,8 @@
 						if(DOM.length > 0){
 							objs.list.html("<ul>" + DOM + "</ul>").slideDown("fast");
 							objs.list.find("li:eq(0)").addClass("fn_emailActive").siblings().removeClass("fn_emailActive");
+							return false;
 						};
-						return false;
 					};
 					objs.list.hide();
 					
