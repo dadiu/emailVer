@@ -209,6 +209,7 @@
 							return false;
 						};
 					};
+					objs.list.html("<ul></ul>");
 					objs.list.hide();
 					
 				}
