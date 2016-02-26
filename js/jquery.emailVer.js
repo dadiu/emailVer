@@ -109,7 +109,7 @@
 
 					$("body").click(function(){
 						objs.list.hide();
-						domName.blur();
+						//domName.blur();
 					});
 
 					if(options.callback){
